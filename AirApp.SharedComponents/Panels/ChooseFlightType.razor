@@ -1,0 +1,266 @@
+﻿<MudTabs Elevation="1"
+         Style="width:1200px; height:100%;"
+         ApplyEffectsToContainer="true"
+         PanelClass="pa-1"
+         DisableSliderAnimation="true"
+         HideSlider="true">
+    <MudTabPanel OnClick="(() => OnTabChange(0))"
+                 Icon="@Icons.Material.Filled.Flight"
+                 Style=@($"padding: 0px; margin: 0px; text-transform:none; font-weight: bold; {_tabs[0]};")
+                 Text="Book a flight">
+        <div class="d-flex flex-column">
+            <div class="d-flex justify-space-between" style="margin: 1%;">
+                @if (_flightType != "Multicity")
+                {
+                    <div style="width: 16%">
+                        <MudSelect T="string"
+                                   AnchorOrigin="Origin.BottomCenter"
+                                   Value="_flightType"
+                                   ValueChanged="((e) => OnChooseFligthType(e))"
+                                   Dense="true"
+                                   Variant="Variant.Outlined">
+                            @foreach (var t in _flightTypes)
+                            {
+                                <MudSelectItem Value="t" />
+                            }
+                        </MudSelect>
+                    </div>
+                    <div style="width: 40%">
+                        <MudAutocomplete @bind-Value="_departureValue"
+                                         T="string"
+                                         Label="Departing from"
+                                         SearchFunc="@DepartureSearch"
+                                         ResetValueOnEmptyText="true"
+                                         Margin="Margin.None"
+                                         Dense="false"
+                                         Variant="Variant.Outlined"
+                                         AdornmentIcon="@Icons.Material.Filled.FlightTakeoff"
+                                         Required="true"
+                                         RequiredError="Please enter a departure city." />
+                    </div>
+                    <div style="width: 40%">
+                        <MudAutocomplete @bind-Value="_arriveValue"
+                                         T="string"
+                                         Label="Arriving at"
+                                         SearchFunc="@ArriveSearch"
+                                         ResetValueOnEmptyText="true"
+                                         Margin="Margin.None"
+                                         Dense="false"
+                                         Variant="Variant.Outlined"
+                                         AdornmentIcon="@Icons.Material.Filled.FlightLand"
+                                         Required="true"
+                                         RequiredError="Please enter an arrival city." />
+                    </div>
+                }
+                else
+                {
+                    <div style="width: 32%">
+                        <MudSelect T="string"
+                                   AnchorOrigin="Origin.BottomCenter"
+                                   Value="_flightType"
+                                   ValueChanged="((e) => OnChooseFligthType(e))"
+                                   Dense="true"
+                                   Variant="Variant.Outlined">
+                            @foreach (var t in _flightTypes)
+                            {
+                                <MudSelectItem Value="t" />
+                            }
+                        </MudSelect>
+                    </div>
+                    <div style="width: 32%;" class="align-self-end">
+                        <MudButton OnClick="OpenPopup"
+                                   Style="width: 100%; padding: 3.9% 0%; border-color: darkgrey;"
+                                   Variant="Variant.Outlined"
+                                   Color="Color.Dark">
+                            @_popupButtonTitle
+                        </MudButton>
+                        <MudPopover Open="@_isOpen"
+                                    Class="d-flex flex-column overflow-scroll px-4 pt-4"
+                                    Style="background-color: white;"
+                                    Fixed="true"
+                                    AnchorOrigin="@Origin.CenterCenter"
+                                    TransformOrigin="@Origin.CenterCenter">
+                            <AddPassengers ParamOpenPopup="OpenPopup"
+                                           ParamUpdateTitles="UpdateTitles"
+                                           Passengers="_passengers"
+                                           PassengersAges="_passengerAges"
+                                           PopupTitle=@_popupTitle
+                                           PopupButtonTitle=@_popupButtonTitle />
+                        </MudPopover>
+                    </div>
+                    <div style="width: 32%">
+                        <MudSelect T="string"
+                                   ValueChanged="((e) => OnChooseFligthClassType(e))"
+                                   AnchorOrigin="Origin.BottomCenter"
+                                   Value="_sitsType"
+                                   Dense="true"
+                                   Variant="Variant.Outlined">
+                            @foreach (var t in _sitsTypes)
+                            {
+                                <MudSelectItem Value="t" />
+                            }
+                        </MudSelect>
+                    </div>
+                }
+            </div>
+            <div class="d-flex justify-space-between" style="margin: 1%;">
+                @if (_flightType != "Multicity")
+                {
+                    <div style="width: 35%;">
+                        @if (_flightType == "Round trip")
+                        {
+                            <MudDateRangePicker MinDate="_dateRangeMin" MaxDate="_dateRangeMax" Variant="Variant.Outlined" Label="Travel dates" @bind-DateRange="_travelDates" DisableToolbar="true" />
+                        }
+                        else
+                        {
+                            <MudDatePicker MinDate="_dateRangeMin" MaxDate="_dateRangeMax" Variant="Variant.Outlined" Label="Departure date" @bind-Date="_travelDate" DisableToolbar="true" />
+                        }
+                    </div>
+                    @*POPUP*@
+                    <div style="width: 35%;" class="align-self-end">
+                        <MudButton @onclick="OpenPopup"
+                                   Style="width: 100%; padding: 3.6% 0%; border-color: darkgrey;"
+                                   Variant="Variant.Outlined"
+                                   Color="Color.Dark">
+                            @_popupButtonTitle
+                        </MudButton>
+                        <MudPopover Open="@_isOpen"
+                                    Class="d-flex flex-column overflow-scroll px-4 pt-4"
+                                    Style="background-color: white;"
+                                    Fixed="true"
+                                    AnchorOrigin="@Origin.CenterCenter"
+                                    TransformOrigin="@Origin.CenterCenter">
+                            <AddPassengers ParamOpenPopup="OpenPopup"
+                                           ParamUpdateTitles="UpdateTitles"
+                                           Passengers="_passengers"
+                                           PassengersAges="_passengerAges"
+                                           PopupTitle=@_popupTitle
+                                           PopupButtonTitle=@_popupButtonTitle />
+                        </MudPopover>
+                    </div>
+                    <div style="width: 25%;">
+                        @*<ChooseFlightClass ParamChangeSitType="OnChooseFligthClassType" SitsTypes="_sitsTypes" />*@
+                        <MudSelect T="string"
+                                   ValueChanged="((e) => OnChooseFligthClassType(e))"
+                                   AnchorOrigin="Origin.BottomCenter"
+                                   Value="_sitsType"
+                                   Dense="true"
+                                   Variant="Variant.Outlined">
+                            @foreach (var t in _sitsTypes)
+                            {
+                                <MudSelectItem Value="t" />
+                            }
+                        </MudSelect>
+                    </div>
+                }
+                else
+                {
+                    <div class="d-flex flex-column" style="width: 100%;">
+                        @for (var i = 0; i < _multiFligts.Count; i++)
+                        {
+                            var localMultiFlight = _multiFligts[i];
+                            var lp = i + 1;
+
+                            <div class="d-flex justify-space-between">
+                                <MudText Typo="Typo.h5" Style="font-weight: bold;">Flight @lp</MudText>
+                                @if (lp > 2)
+                                {
+                                    <MudIconButton OnClick="(() => DeleteMultiFlight(localMultiFlight.GetId()))"
+                                                   Icon="@Icons.Material.Filled.Clear"
+                                                   Style="color: black; " />
+                                }
+                            </div>
+                            <div class="d-flex justify-space-between">
+                                <div style="width: 35%;">
+                                    <MudAutocomplete @bind-Value="localMultiFlight.DepartureAirport"
+                                                     T="string"
+                                                     Label="Departing from"
+                                                     SearchFunc="@DepartureSearch"
+                                                     ResetValueOnEmptyText="true"
+                                                     Margin="Margin.None"
+                                                     Dense="false"
+                                                     Variant="Variant.Outlined"
+                                                     AdornmentIcon="@Icons.Material.Filled.FlightTakeoff"
+                                                     Required="true"
+                                                     RequiredError="Please enter a departure city." />
+                                </div>
+                                <div style="width: 35%;">
+                                    <MudAutocomplete @bind-Value="localMultiFlight.ArriveAirport"
+                                                     T="string"
+                                                     Label="Arriving at"
+                                                     SearchFunc="@ArriveSearch"
+                                                     ResetValueOnEmptyText="true"
+                                                     Margin="Margin.None"
+                                                     Dense="false"
+                                                     Variant="Variant.Outlined"
+                                                     AdornmentIcon="@Icons.Material.Filled.FlightLand"
+                                                     Required="true"
+                                                     RequiredError="Please enter an arrival city." />
+                                </div>
+                                <div style="width: 25%;">
+                                    <MudDatePicker MinDate="_dateRangeMin" MaxDate="_dateRangeMax" Variant="Variant.Outlined" Label="Departure date" @bind-Date="localMultiFlight.TravelDate" DisableToolbar="true" />
+                                </div>
+                            </div>
+                            <MudDivider Style="margin-top: 1%; margin-bottom: 2%;" />
+                        }
+                        <div>
+                            @if (_showAddNewFlightsButton)
+                            {
+                                <MudButton OnClick="AddNewMultiFlight"
+                                           Style="font-size: 18px; "
+                                           Target="_blank"
+                                           StartIcon="@Icons.Material.Filled.Add"
+                                           IconSize="Size.Large"
+                                           Color="Color.Dark">
+                                    ADD ANOTHER FLIGHT
+                                </MudButton>
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="d-flex justify-space-between" style="margin: 1%;">
+                <div class="d-flex flex-column">
+                    <div>
+                        <MudToggleIconButton @bind-Toggled="@_isBluebizCorpateContract"
+                                             Style="padding: 0%; margin: 0%;"
+                                             Icon="@Icons.Material.Filled.ToggleOff"
+                                             Color="@Color.Dark"
+                                             Size="Size.Large"
+                                             ToggledSize="Size.Large"
+                                             ToggledIcon="@Icons.Material.Filled.ToggleOn"
+                                             ToggledColor="@Color.Info" />
+                        I want to book with a bluebiz or corporate contract
+                    </div>
+                    @if (_multiFligts.Count > 2)
+                    {
+                        <div class="d-flex flex-row" style="padding: 0%; margin: 0%;">
+                            <MudIcon Class="align-self-center" Icon="@Icons.Material.Filled.Info" Color="Color.Info" Title="Flex fare tickets are changeable and refundable." />
+                            <MudCheckBox Style="padding: 0%; margin: 0%;" Dense="true" @bind-Checked="@_onlyFlexFales" Color="Color.Dark" Label="Show flex fares only" />
+                        </div>
+                    }
+                </div>
+                <div class="align-self-center">
+                    <MudButton Variant="Variant.Filled"  Style="padding:10px; width: fit-content; height:fit-content; background-color: #0045b6; color: white; text-transform:none; width: 134px; height: 40px; font-weight: bold;">Search flights</MudButton>
+                </div>
+            </div>
+        </div>
+    </MudTabPanel>
+    <MudTabPanel OnClick="(() => OnTabChange(1))"
+                 Icon="@Icons.Material.Filled.DensitySmall"
+                 Style=@($"padding: 0px; margin: 0px; text-transform:none; font-weight: bold; {_tabs[1]}")
+                 Text="Book with Miles">
+        <div class="d-flex flex-row justify-space-between">
+            <div style="margin: 2% 10%;" class="align-self-center">
+                <MudImage Src="@_flyingBlueLogo" />
+            </div>
+            <div class="align-self-center">
+                <MudText Style="color: #051039; font-weight: bold;" Typo="Typo.h4">Flying Blue Miles</MudText>
+                <MudText>Log in to your Flying Blue account to book a ticket with Miles.</MudText>
+            </div>
+            <div style="margin-right: 2%;" class="align-self-center">
+                <MudButton Variant="Variant.Filled" Style="background-color: #051039; color: white; text-transform:none; width: 96px; height: 40px;">Log in</MudButton>
+            </div>
+        </div>
+    </MudTabPanel>
+</MudTabs>

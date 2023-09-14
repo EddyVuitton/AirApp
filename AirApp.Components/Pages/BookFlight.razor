@@ -1,0 +1,19 @@
+﻿@page "/"
+
+@if (_loading)
+{
+    <MudText Typo="Typo.h1">Loading...</MudText>
+}
+else
+{
+    <div class="d-flex flex-column" style=" height: 2000px; position: relative;">
+        <div>
+            <MudImage Src="@_backgroundImagePath" />
+        </div>
+        <div class="d-flex justify-center">
+            <div style="position: absolute; top: 22%; right: 10%; background-color: white;">
+                <ChooseFlightType />
+            </div>
+        </div>
+    </div>
+}

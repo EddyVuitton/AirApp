@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<Nullable>Disable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
+	<ItemGroup>
+		<SupportedPlatform Include="browser"/>
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="7.0.5"/>
+		<PackageReference Include="MudBlazor" Version="6.4.1"/>
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\AirApp.Data\AirApp.Data.csproj"/>
+		<ProjectReference Include="..\AirApp.SharedComponents\AirApp.ComponentsShared.csproj"/>
+		<ProjectReference Include="..\AirApp.WebApi\AirApp.WebApi.csproj"/>
+	</ItemGroup>
+</Project>

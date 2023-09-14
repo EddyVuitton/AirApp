@@ -1,0 +1,58 @@
+﻿<div>
+    <MudText Typo="Typo.h4" Style="">@PopupTitle</MudText>
+</div>
+<div class="d-flex justify-center overflow-auto" style="width: 500px; height: 400px; margin-bottom: 3%; background-color: transparent;">
+    <div class="d-flex flex-column">
+        @for (var i = 0; i < Passengers.Count; i++)
+        {
+            var localI = i + 1;
+            var localPassenger = Passengers[i];
+            var localPassengerAge = localPassenger.GetPassengerAge();
+
+            <div class="d-flex flex-row align-content-center" style="width: 470px; height: 100px; border: 2px solid #e9e9eb; margin-top: 2%">
+                <div class="d-flex justify-center" style="width: 15%; height: 100%;">
+                    <MudIcon Size="Size.Large" Style="border-radius: 20px; color: #ffffff; background-color: #14438b;" Class="align-self-center" Icon="@Icons.Material.Filled.Person"></MudIcon>
+                </div>
+                <div class="align-self-center" style="width: 75%; height: 80px;">
+                    <div class="d-flex flex-column" style="width: inherit; height: inherit;">
+                        <div style="width: 329px; height: inherit; font-size: 15px">
+                            @localPassenger.GetName() @localI
+                        </div>
+                        <div style="width: 329px; height: inherit; ">
+                            <select @onchange="((e) => OnAgeChange(e, localPassenger))" style="width: inherit; height: 50px; font-size: 20px; ">
+                                @foreach (var pA in PassengersAges)
+                                {
+                                    var isSelectect = localPassengerAge.GetName() == pA.GetName();
+
+                                    <option selected="@isSelectect">@pA.GetName()</option>
+                                }
+                            </select>
+                            <MudDivider />
+                        </div>
+                    </div>
+                </div>
+                <div style="width: 10%; height: 100px;">
+                    <MudIconButton OnClick="(() => DeletePassenger(localPassenger.GetId()))" Disabled="_isDeletePassDisabled" Style="color: #14438b" Icon="@Icons.Material.Filled.Close"></MudIconButton>
+                </div>
+            </div>
+        }
+        <div style="height: 50px;">
+            <MudButton OnClick="AddPassenger"
+                       Style="width: 50%; height: auto; padding: 1%; margin-top: 5%; text-transform:none; font-size: 20px;"
+                       Color="Color.Dark"
+                       IconSize="Size.Large"
+                       Size="Size.Large"
+                       Disabled="@_isAddPassDisabled"
+                       StartIcon="@Icons.Material.Filled.Add">
+                Add a passenger
+            </MudButton>
+        </div>
+    </div>
+</div>
+<MudDivider />
+<div class="d-flex justify-end" style="margin-top: 2%;">
+    <MudButton OnClick="@InvokePopupOpen"
+               Style="padding: 1% 2% 1% 2%;"
+               Size="Size.Large"
+               Color="Color.Dark">Continue</MudButton>
+</div>

@@ -1,0 +1,25 @@
+﻿@page "/check-in"
+
+@if (_loading)
+{
+    <MudText Typo="Typo.h1">Loading...</MudText>
+}
+else
+{
+    <MudText Typo="Typo.h1">Check In</MudText>
+}
+
+@code
+{
+    private bool _loading = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+
+        var random = new Random().Next(1, 2);
+
+        //await Task.Delay(random * 1000);
+        _loading = false;
+    }
+}
