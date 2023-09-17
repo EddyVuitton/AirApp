@@ -1,5 +1,6 @@
-﻿//namespace AirApp.WebApi.Repositories;
+﻿namespace AirApp.WebApi.Repositories;
 
-//public interface IApplicationRepository
-//{
-//}
+public interface IApplicationRepository
+{
+    DateTime? Test();
+}

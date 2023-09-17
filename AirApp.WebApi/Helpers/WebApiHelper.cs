@@ -13,6 +13,7 @@ public static class WebApiHelper
         builder.Services.AddSwaggerGen();
 
         builder.Services.AddWebApi();
+        builder.Services.InitializeLogger();
         builder.Services.AddSqlServer<DBContext>(builder.Configuration.GetConnectionString("DefaultConnection"));
     }
 }
