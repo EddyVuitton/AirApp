@@ -8,7 +8,7 @@ public partial class DBContext : DbContext
 {
     public DBContext(DbContextOptions<DBContext> options) : base(options) { }
 
-    public virtual DbSet<TestModelDto> test_model_dto { get; set; }
+    public virtual DbSet<DealDto> DealDto { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

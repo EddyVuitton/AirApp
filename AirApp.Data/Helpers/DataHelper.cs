@@ -12,7 +12,7 @@ public static class DataHelper
 
     public static void AddDtos(this ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<TestModelDto>(entity =>
+        modelBuilder.Entity<DealDto>(entity =>
         {
             entity.HasNoKey();
         });
