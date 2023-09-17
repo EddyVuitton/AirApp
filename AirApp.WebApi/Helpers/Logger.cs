@@ -13,7 +13,6 @@ public static class Logger
     {
         int threadId = Environment.CurrentManagedThreadId;
         string now = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
-
         string log = $"[{now}] [{threadId}] [Error] {ex.Message}\n{ex.StackTrace}\nSource: {ex.Source}";
         SaveLogToFile(log);
     }
