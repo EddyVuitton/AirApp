@@ -5,8 +5,8 @@
 <MudSnackbarProvider />
 
 <MudLayout>
-    <MudPaper Elevation="5" Class="d-flex flex-row justify-center">
-        <div class="d-flex flex-column" style="width: 1440px; background-color: white;">
+    <div class="d-flex flex-row justify-center">
+        <div class="d-flex flex-column" style="width: 1440px;">
             <div class="d-flex justify-center">
                 <div class="d-flex justify-space-between" style="width: 100%;">
                     <div class="d-flex justify-start">
@@ -62,8 +62,8 @@
                 </div>
             </div>
         </div>
-    </MudPaper>
-    <MudDrawer @bind-Open="@_drawerOpen" Elevation="1" Anchor="Anchor.Start" Variant="@DrawerVariant.Temporary">
+    </div>
+    @*<MudDrawer @bind-Open="@_drawerOpen" Elevation="1" Anchor="Anchor.Start" Variant="@DrawerVariant.Temporary">
         <MudNavMenu>
             <MudNavLink Href="/" Match="NavLinkMatch.All">Zarezerwuj lot</MudNavLink>
             <MudNavLink Href="/check-in" Match="NavLinkMatch.All">Odprawa</MudNavLink>
@@ -74,10 +74,10 @@
             <MudNavLink Href="/" Match="NavLinkMatch.All">Usługi biznesowe</MudNavLink>
             <MudNavLink Href="/" Match="NavLinkMatch.All">Kontakt z nami</MudNavLink>
         </MudNavMenu>
-    </MudDrawer>
-    <MudMainContent>
+    </MudDrawer>*@
+    <MudMainContent Style="padding: 0%; margin: 0%; background-color: #f6f6f7">
         <div class="d-flex justify-center">
-            <div style=" border: 1px solid;">
+            <div style="border: 1px solid;">
                 @Body
             </div>
         </div>

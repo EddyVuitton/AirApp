@@ -1,5 +1,4 @@
-﻿using AirApp.Data.DTOs;
-using AirApp.Data.Helpers;
+﻿using AirApp.Data.Helpers;
 using Microsoft.EntityFrameworkCore;
 
 namespace AirApp.Data.Context;
@@ -8,12 +7,9 @@ public partial class DBContext : DbContext
 {
     public DBContext(DbContextOptions<DBContext> options) : base(options) { }
 
-    public virtual DbSet<DealDto> DealDto { get; set; }
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         DataHelper.AddEntities(modelBuilder);
-        DataHelper.AddDtos(modelBuilder);
 
         OnModelCreatingPartial(modelBuilder);
     }

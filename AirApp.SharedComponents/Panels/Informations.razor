@@ -1,0 +1,25 @@
+﻿<div style="width: 960px; color: #051039;">
+    <div class="d-flex flex-column gap-y-8">
+        <h1 style="font-weight: bold;">Information</h1>
+
+        <div class="d-flex flex-column gap-y-4">
+            <div class="d-flex flex-row justify-space-between">
+                @foreach (var i in _infos.Take(2))
+                {
+                    <PresentedInformation Info="i" />
+                }
+            </div>
+            <div class="d-flex flex-row justify-space-between">
+                @foreach (var i in _infos.TakeLast(2))
+                {
+                    <PresentedInformation Info="i" />
+                }
+            </div>
+        </div>
+    </div>
+    <div style="margin-top: 3%;">
+        <MudButton Variant="Variant.Filled" Style="font-size: 1rem; background-color: #051039; color:white; text-transform: none; padding: 1% 2.5%;">
+            Our best deals and promotions
+        </MudButton>
+    </div>
+</div>
