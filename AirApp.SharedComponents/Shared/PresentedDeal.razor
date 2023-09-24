@@ -11,10 +11,10 @@
 
 <div class="d-flex flex-column cursor-pointer">
     <div class="d-flex justify-space-between deal-transition-dense" style="width: 100%; height: 64px; font-size: 15px;">
-        <div class="align-self-center" style="width: 35%;">
+        <div class="align-self-center" style="width: 30%;">
             <span style="font-weight: bold; font-size: 17px;">@Deal.Capital</span> <span>(@Deal.Country)</span>
         </div>
-        <div class="align-self-center" style="width: 15%; font-weight: bold;">
+        <div class="align-self-center" style=" font-weight: bold;">
             <span>From </span><span style="font-size: 17px;">@Deal.Currency @(Deal.Price.ToString("#,0"))*</span>
         </div>
         <div class="align-self-center">
@@ -23,8 +23,15 @@
                 <span class="align-self-center">@Deal.FlightType</span>
             </div>
         </div>
-        <div class="align-self-center">
-            <MudIcon Icon="@Icons.Material.Filled.Info" />
+        <div class="d-flex flex-row gap-x-4">
+            <div class="align-self-center">
+                <MudIcon Icon="@Icons.Material.Filled.Info" />
+            </div>
+            <div class="align-self-center">
+                <MudButton Variant="Variant.Outlined" Style="font-size: 1.125rem; color: #051039; text-transform: none; padding: 6px 10px;">
+                    Book now >
+                </MudButton>
+            </div>
         </div>
     </div>
     <MudDivider></MudDivider>
