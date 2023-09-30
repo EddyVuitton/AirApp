@@ -1,68 +1,71 @@
 ﻿@inherits LayoutComponentBase
+@using AirApp.ComponentsShared.Panels;
 
 <MudThemeProvider />
 <MudDialogProvider />
 <MudSnackbarProvider />
 
 <MudLayout>
-    <div class="d-flex flex-row justify-center">
-        <div class="d-flex flex-column" style="width: 1440px;">
-            <div class="d-flex justify-center">
-                <div class="d-flex justify-space-between" style="width: 100%;">
-                    <div class="d-flex justify-start">
-                        <div class="d-flex align-content-center">
-                            <MudIconButton OnClick="OpenDrawer"
-                                           Style="padding: 0%; margin: 0%; border-radius: 0px; width: 60px; height:60px;"
-                                           Size="Size.Large"
-                                           Icon="@Icons.Material.Filled.Menu"
-                                           Color="Color.Inherit" />
+    <header>
+        <div class="d-flex flex-row justify-center">
+            <div class="d-flex flex-column" style="width: 1440px;">
+                <div class="d-flex justify-center">
+                    <div class="d-flex justify-space-between" style="width: 100%;">
+                        <div class="d-flex justify-start">
+                            <div class="d-flex align-content-center">
+                                <MudIconButton OnClick="OpenDrawer"
+                                               Style="padding: 0%; margin: 0%; border-radius: 0px; width: 60px; height:60px;"
+                                               Size="Size.Large"
+                                               Icon="@Icons.Material.Filled.Menu"
+                                               Color="Color.Inherit" />
 
-                            <div class="align-self-center" style="width: 190px; height: 40px;">
-                                <MudImage Width="190" Height="40" Src="@_logoImagePath" />
+                                <div class="align-self-center" style="width: 190px; height: 40px;">
+                                    <MudImage Width="190" Height="40" Src="@_logoImagePath" />
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="d-flex justify-end">
-                        <div class="d-flex">
-                            <div class="d-flex flex-row justify-space-between">
-                                <MudButton Style="text-transform: none; padding: 0px 10px;" Color="Color.Dark">
-                                    Poland - EN
-                                </MudButton>
-                                <MudButton Style="text-transform: none; padding: 0px 10px;" StartIcon="@Icons.Material.Filled.Person"
-                                           Color="Color.Dark"
-                                           Size="Size.Large"
-                                           IconSize="Size.Large">
-                                    Login in
-                                </MudButton>
-                                <MudButton Style="text-transform: none; padding: 0px 10px;" StartIcon="@Icons.Material.Filled.PersonAdd"
-                                           Color="Color.Dark"
-                                           Size="Size.Large"
-                                           IconSize="Size.Large">
-                                    Sign up
-                                </MudButton>
+                        <div class="d-flex justify-end">
+                            <div class="d-flex">
+                                <div class="d-flex flex-row justify-space-between">
+                                    <MudButton Style="text-transform: none; padding: 0px 10px;" Color="Color.Dark">
+                                        Poland - EN
+                                    </MudButton>
+                                    <MudButton Style="text-transform: none; padding: 0px 10px;" StartIcon="@Icons.Material.Filled.Person"
+                                               Color="Color.Dark"
+                                               Size="Size.Large"
+                                               IconSize="Size.Large">
+                                        Login in
+                                    </MudButton>
+                                    <MudButton Style="text-transform: none; padding: 0px 10px;" StartIcon="@Icons.Material.Filled.PersonAdd"
+                                               Color="Color.Dark"
+                                               Size="Size.Large"
+                                               IconSize="Size.Large">
+                                        Sign up
+                                    </MudButton>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="d-flex justify-start">
-                <div class="d-flex justify-space-between">
-                    <div class="d-flex justify-start">
-                        @foreach (var b in _buttons)
-                        {
-                            <MudButton OnClick="(() => NavToPage(b.Page))"
-                                       Class="@b.Class"
-                                       Style="@b.Style"
-                                       DisableElevation="@b.DisableElevation"
-                                       Color="@b.Color">
-                                @b.Name
-                            </MudButton>
-                        }
+                <div class="d-flex justify-start">
+                    <div class="d-flex justify-space-between">
+                        <div class="d-flex justify-start">
+                            @foreach (var b in _buttons)
+                            {
+                                <MudButton OnClick="(() => NavToPage(b.Page))"
+                                           Class="@b.Class"
+                                           Style="@b.Style"
+                                           DisableElevation="@b.DisableElevation"
+                                           Color="@b.Color">
+                                    @b.Name
+                                </MudButton>
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </header>
     @*<MudDrawer @bind-Open="@_drawerOpen" Elevation="1" Anchor="Anchor.Start" Variant="@DrawerVariant.Temporary">
     <MudNavMenu>
     <MudNavLink Href="/" Match="NavLinkMatch.All">Zarezerwuj lot</MudNavLink>
@@ -76,63 +79,21 @@
     </MudNavMenu>
     </MudDrawer>*@
     <MudMainContent Style="padding: 0%; margin: 0%; background-color: #f6f6f7">
-        <div class="d-flex flex-column justify-center gap-y-16">
+        <div class="d-flex flex-column justify-center">
             <div>
                 @Body
             </div>
-            <div class="d-flex flex-column justify-center">
-                <div>
-                    <hr style="border-top: 1px solid #c8c8c8;">
-                </div>
-                <div style="margin-top: 2% 0%">
-                    <SocialLinks />
-                </div>
-                <div class="d-flex flex-row justify-center" style="color: white; background-color: #051039;">
-                    <div class="d-flex flex-row justify-space-between gap-x-2" style="width: 960px; margin: 1% 0%;">
-                        <div class="d-flex flex-column justify-start gap-2" style="width: 250px; padding-top: 1%;">
-                            <h2>Help and Contacts</h2>
-                            <a href="/" class="link link-underline">Contact us</a>
-                            <a href="/" class="link link-underline">Claims</a>
-                            <a href="/" class="link link-underline">Refund</a>
-                            <a href="/" class="link link-underline">Passengers with disabilities</a>
-                        </div>
-                        <div class="d-flex flex-column justify-start gap-2" style="width: 250px; padding-top: 1%;">
-                            <h2>Online payment and shopping</h2>
-                            <a href="/" class="link link-underline">Booking fees and payment methods</a>
-                            <a href="/" class="link link-underline">Air France shopping</a>
-                            <a href="/" class="link link-underline">Why book your ticket on the official Air France website?</a>
-                        </div>
-                        <div class="d-flex flex-column justify-start gap-2" style="width: 250px; padding-top: 1%;">
-                            <h2>About Air France and partners</h2>
-                            <a href="/" class="link link-underline">Flying Blue</a>
-                            <a href="/" class="link link-underline">Transavia</a>
-                            <a href="/" class="link link-underline">KLM</a>
-                            <a href="/" class="link link-underline">SkyTeam</a>
-                            <a href="/" class="link link-underline">Air France corporate</a>
-                            <a href="/" class="link link-underline">Worldwide sites</a>
-                            <a href="/" class="link link-underline">Travel destinations</a>
-                            <a href="/" class="link link-underline">Affiliate program</a>
-                        </div>
-                        <div class="d-flex flex-column justify-start gap-2" style="width: 250px; padding-top: 1%;">
-                            <h2>Air France app</h2>
-                            <img class="cursor-pointer" style="width: 200px; height: 60px;" src="https://img.static-af.com/images/media/9D55C68A-D87B-4B21-B7F43E7B76A99E9A/" />
-                            <img class="cursor-pointer" style="width: 200px; height: 60px;" src="https://img.static-af.com/images/media/718E33D6-4636-411F-839A07629E5B96F4/" />
-                            <img class="cursor-pointer" style="width: 200px; height: 60px;" src="https://img.static-af.com/images/media/9FE3B888-7858-4E4D-8390C7E41A4982B7/" />
-                        </div>
-                    </div>
-                </div>
-                <div class="d-flex flex-column justify-center" style=" margin: 1% 0%;">
-                    <div class="d-flex flex-row justify-center gap-x-8">
-                        <a href="/" class="link" style="color: #646774;">Site Map</a>
-                        -
-                        <a href="/" class="link" style="color: #646774;">Legal notices</a>
-                        -
-                        <a href="/" class="link" style="color: #646774;">Privacy policy</a>
-                        -
-                        <a href="/" class="link" style="color: #646774;">Accessibility statement</a>
-                        -
-                        <a href="/" class="link" style="color: #646774;">Cookie settings</a>
-                    </div>
+            <div class="d-flex flex-column justify-center" style="margin: 1% 0%;">
+                <div class="d-flex flex-row justify-center gap-x-8">
+                    <a href="/" class="link" style="color: #646774;">Site Map</a>
+                    -
+                    <a href="/" class="link" style="color: #646774;">Legal notices</a>
+                    -
+                    <a href="/" class="link" style="color: #646774;">Privacy policy</a>
+                    -
+                    <a href="/" class="link" style="color: #646774;">Accessibility statement</a>
+                    -
+                    <a href="/" class="link" style="color: #646774;">Cookie settings</a>
                 </div>
             </div>
         </div>

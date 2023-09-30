@@ -22,7 +22,7 @@ public partial class MainLayout
 
         _buttons.Add(new MyButton("Book a flight", NavigationManager, "/"));
         _buttons.Add(new MyButton("Check-in", NavigationManager, "/check-in"));
-        _buttons.Add(new MyButton("My bookings", NavigationManager, "/trip"));
+        _buttons.Add(new MyButton("My booking", NavigationManager, "/trip"));
         _buttons.Add(new MyButton("Information", NavigationManager, "/information"));
         _buttons.Add(new MyButton("Covid-19", NavigationManager, "/information/covid-19", "font-weight: bold;"));
     }
@@ -61,8 +61,8 @@ public partial class MainLayout
 
 public class MyButton
 {
-    private readonly string _borderClass = "border-b-4 border-solid mud-border-primary";
-    private readonly string _borderlessClass = "border-b-0 border-solid mud-border-primary";
+    private readonly string _borderClass = "border-b-4 border-solid mud-border-error";
+    private readonly string _borderlessClass = "border-b-0 border-solid mud-border-error";
 
     public string Class;
     public string Style;
