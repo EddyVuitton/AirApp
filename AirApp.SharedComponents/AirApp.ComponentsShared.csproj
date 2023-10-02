@@ -14,7 +14,4 @@
 	<ItemGroup>
 		<ProjectReference Include="..\AirApp.Data\AirApp.Data.csproj" />
 	</ItemGroup>
-	<ItemGroup>
-	  <Folder Include="Dialogs\" />
-	</ItemGroup>
 </Project>

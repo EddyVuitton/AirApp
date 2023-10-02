@@ -1,0 +1,22 @@
+﻿<style>
+    .feedback {
+        background-color: #051039;
+        color: white;
+        padding: 5px 20px;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    #button {
+        position: fixed;
+        width: 30px;
+        height: 106px;
+        right: -30px;
+        top: 50%;        
+        transform: rotate(-90deg);
+    }
+</style>
+
+<div id="button" onclick=@(() => OpenDialog())>
+    <button class="feedback">Feedback</button>
+</div>

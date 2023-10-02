@@ -1,0 +1,88 @@
+﻿<style>
+    .info {
+        border: 1px solid rgba(156, 172, 186, 0.3);
+        border-radius: 4px;
+        padding: 11px;
+        width: 138px;
+        cursor: pointer;
+    }
+
+        .info h4 {
+            font-size: 1.06667em;
+            text-align: center;
+            width: 100%;
+            margin: 0px auto 5px;
+        }
+
+        .info span {
+            font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-size: 13px;
+            font-weight: 100;
+            display: block;
+            max-width: 135px;
+            margin: auto;
+            text-align: center;
+        }
+
+    .icon {
+        background-image: url(https://d6tizftlrpuof.cloudfront.net/themes/production/airfrance-airfrance-2017-06-19-sprite-7292d464e66934f56251b5ab40be0ddf.png);
+        background-size: 670px;
+        height: 60px;
+        width: 100px;
+        margin: 11px auto;
+    }
+
+    #logo {
+        width: 100%;
+        background-image: url(https://d6tizftlrpuof.cloudfront.net/themes/production/airfrance-airfrance-2017-06-19-banner-logo-url-83fca02bf13d580518f750f7e78a0940.png);
+        background-repeat: no-repeat;
+        background-origin: content-box;
+        background-size: auto 30px;
+        height: 30px;
+        background-position: left center;
+    }
+
+    .transition-padding {
+        padding-bottom: 2%;
+        transition: 0.3s;
+    }
+
+        .transition-padding:hover {
+            padding-bottom: 4%;
+        }
+</style>
+
+<MudDialog Style="width: 500px;">
+    <DialogContent>
+        <div class="d-flex flex-column gap-y-4" style="margin-bottom: 2%;">
+            <div id="logo"></div>
+            <h2>
+                Thank you for taking the time to submit your feedback.
+            </h2>
+            <div class="d-flex flex-row justify-center gap-x-4">
+                <div class="info">
+                    <div class="icon"></div>
+                    <h4>Comment on part of the page</h4>
+                    <span>I wish to comment on a particular item on this page.</span>
+                </div>
+                <div class="info">
+                    <div class="icon"></div>
+                    <h4>General comment</h4>
+                    <span>I wish to comment on the entire page.</span>
+                </div>
+                <div class="info">
+                    <div class="icon"></div>
+                    <h4>Contact us</h4>
+                    <span>Please note that we cannot respond to comments left here. If you want to ask us a question, please consult the “Contact Us” section</span>
+                </div>
+            </div>
+        </div>
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="Close"
+                   Style="background-color: #051039; color:white; text-transform: none; padding: 1% 4%;"
+                   Variant="Variant.Outlined">
+            Close
+        </MudButton>
+    </DialogActions>
+</MudDialog>
